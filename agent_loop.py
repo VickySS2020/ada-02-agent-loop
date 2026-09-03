@@ -12,13 +12,13 @@ while not finished:
     # The agent calls a tool depending on the action
     match action.type:
     case "READ":
-        result = view_file(action)
+        result = view_file(action.file)
     case "WRITE":
-        result = create_file(action)
+        result = create_file(action.file, action.content)
     case "EDIT":
-        result = edit_file(action)
+        result = edit_file(action.file, action.changes)
     case "BASH":
-        result = run_command(action)
+        result = run_command(action.command)
 
     # Update context based on the results of the action taken
     update_context(result)
